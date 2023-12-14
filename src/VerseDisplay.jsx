@@ -6,10 +6,12 @@ const VerseDisplay = () => {
 
   useEffect(() => {
     // Fetch the verse of the day
-    fetch('https://bible-api.com/?random=verse')
-      .then((response) => response.json())
+    fetch('https://bible-api.com/?random=verse', {mode: "no-cors"})
+      .then(response => response.json)
       .then((data) => setVerse(data.text))
-      .catch((error) => console.error('Error fetching verse:', error));
+      .then(data => console.log(JSON.stringify(data)) )
+     
+     // .catch((error) => console.error('Error fetching verse:', error));
   }, []);
 
   return (
