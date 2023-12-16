@@ -10,7 +10,7 @@ const VerseDisplay = () => {
         .then((res) => res.json())
         .then((data) => {
          console.log(data[0].text);
-         setVerse(data)
+         setVerse(data[0].text)
         });
     };
     Passage();
@@ -19,7 +19,7 @@ const VerseDisplay = () => {
   return (
     <div>
       <h2>Verse of the Day</h2>
-      <p>{verse[0].text}</p>
+      <p>{verse}</p>
     </div>
   );
 };
