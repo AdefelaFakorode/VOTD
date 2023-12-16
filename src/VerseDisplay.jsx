@@ -5,19 +5,21 @@ const VerseDisplay = () => {
   const [verse, setVerse] = useState('');
 
   useEffect(() => {
-    // Fetch the verse of the day
-    fetch('https://bible-api.com/?random=verse', {mode: "no-cors"})
-      .then(response => response.json)
-      .then((data) => setVerse(data.text))
-      .then(data => console.log(JSON.stringify(data)) )
-     
-     // .catch((error) => console.error('Error fetching verse:', error));
+    const Passage = async () => {
+      await fetch(`https://labs.bible.org/api/?passage=random&type=json`)
+        .then((res) => res.json())
+        .then((data) => {
+         console.log(data[0].text);
+         setVerse(data)
+        });
+    };
+    Passage();
   }, []);
 
   return (
     <div>
       <h2>Verse of the Day</h2>
-      <p>{verse}</p>
+      <p>{verse[0].text}</p>
     </div>
   );
 };
